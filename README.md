@@ -17,8 +17,8 @@
     </thead>
     <tbody>
         <tr>
-            <td><img src=".github/register_command.png" alt="Minecraft Register Command" width="50%" /></td>
-            <td><img src=".github/register_success_command.png" alt="Minecraft Register Command" width="50%" /></td>
+            <td><img src=".github/register_command.png" alt="Minecraft Register Command" width="100%" /></td>
+            <td><img src=".github/register_success_command.png" alt="Minecraft Register Command" width="100%" /></td>
         </tr>
     </tbody>
 </table>
