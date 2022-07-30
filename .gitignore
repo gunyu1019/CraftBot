@@ -127,3 +127,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Integrated Development Environment
+.idea/
+
+# Configuration
+config/config.ini
+
+# Not Owned by Copyright Project
+assets/font/*
+
+# Logging
+log/*
