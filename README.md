@@ -8,7 +8,20 @@
 마인크래프트와 관련된 다양한 각종 기능들을 제공하는 디스코드 봇입니다.<br/>
 아래의 나열된 기능을 제공합니다.
 ### Microsoft XBOX 계정을 통한 마인크래프트 계정 간 프로필 연동
-<img src=".github/register_command.png" alt="Minecraft Register Command" width="50%" />
+<table>
+    <thead>
+        <tr>
+            <th>인증 전</th>
+            <th>인증 후(등록 성공)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img src=".github/register_command.png" alt="Minecraft Register Command" width="50%" /></td>
+            <td><img src=".github/register_success_command.png" alt="Minecraft Register Command" width="50%" /></td>
+        </tr>
+    </tbody>
+</table>
 Microsoft Oauth2를 활용하여 XBOX 정보를 제공받고, XBOX 정보를 기반으로 마인크래프트 정보를 불러옵니다.
 
 ### 디스코드 프로필을 통한 연동된 마인크래프트 프로필 조회§
