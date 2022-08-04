@@ -3,7 +3,6 @@ import random
 import string
 
 import aiohttp
-from aiohttp import web
 
 import discord
 from discord.ext import interaction
@@ -16,8 +15,6 @@ from utils.database import connect_database
 
 logger = logging.getLogger(__name__)
 parser = get_config()
-app = web.Application()
-routes = web.RouteTableDef()
 scope = parser.get("microsoft-oauth2", "scope").split()
 
 
@@ -66,7 +63,7 @@ class Authorization:
             interaction.Button(
                 style=5,
                 url=self.client.authorize(
-                    redirect_uri="http://localhost:3201/session/callback",
+                    redirect_uri="https://localhost:3201/session/callback",
                     scope=scope,
                     state=state,
                 ),
