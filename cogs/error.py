@@ -50,7 +50,7 @@ class Error:
             embed.add_field(name='채널명', value=f'{ctx.channel.name}', inline=True)
         embed.add_field(name='유저명', value=f'{ctx.author}', inline=True)
         embed.add_field(name='메세지', value=f'{ctx.content}', inline=False)
-        await self.bot.get_guild(844613188900356157).get_channel(872534703306059806).send(embed=embed)
+        await self.bot.get_guild(844613188900356157).get_channel(969647903738069012).send(embed=embed)
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
@@ -60,5 +60,5 @@ class Error:
         await self.on_interaction_command_error(ctx, error)
 
 
-async def setup(client):
-    client.add_icog(Error(client))
+def setup(client):
+    client.add_interaction_cog(Error(client))

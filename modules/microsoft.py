@@ -170,8 +170,6 @@ class Microsoft(Pointer):
         if single_session:
             await session.close()
         return XboxLive(result)
-
-
     @staticmethod
     async def authenticate_with_minecraft(
             xbox_live_profile: XboxLive,

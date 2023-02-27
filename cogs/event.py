@@ -91,5 +91,5 @@ class Events:
         return
 
 
-async def setup(client):
-    client.add_icog(Events(client))
+def setup(client):
+    client.add_interaction_cog(Events(client))

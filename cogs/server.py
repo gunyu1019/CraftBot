@@ -9,7 +9,7 @@ from discord.ext import commands
 from discord.ext import interaction
 from PIL import Image, ImageDraw, ImageFont
 from pydantic import BaseModel
-from typing import Optional, List
+from typing import Optional, List, Tuple
 from socket import timeout
 
 from config.config import get_config
@@ -40,7 +40,17 @@ class Server:
         self.error_color = int(parser.get("Color", "error"), 16)
         self.warning_color = int(parser.get("Color", "warning"), 16)
 
-        self.player_list_font = ImageFont.truetype(font_location, size=24)
+        self.server_title1_font = ImageFont.truetype(font_location, size=36)
+        self.server_title2_font = ImageFont.truetype(font_location, size=30)
+        self.server_player_list_font = ImageFont.truetype(font_location, size=24)
+
+    @staticmethod
+    def text(canvas: ImageDraw.ImageDraw, text: str, position: Tuple[int], font: ImageFont.ImageFont = None):
+        _pos_x = position[0]
+        for _text in text.split("§"):
+            text_x, _ = canvas.textsize(text=text, font=font)
+            _pos_x += text_x
+        return canvas
 
     @interaction.command(name="서버", description="마인크래프트 서버 정보를 불러옵니다.")
     @interaction.option(name="주소", description="서버 주소가 입력됩니다.")
@@ -56,9 +66,10 @@ class Server:
     async def server(self, ctx, address: str, port: int = None, server_type: str = "JavaEdition"):
         await ctx.defer()
         if server_type == "JavaEdition":
-            _port = port if port is not None else 25565
-            lookup = await mcstatus.JavaServer.async_lookup(f"{address}:{_port}")
-            # data = ServerData()
+            original_address = address
+            if port is not None:
+                address += ":{0}".format(port)
+            lookup = await mcstatus.JavaServer.async_lookup(address)
             try:
                 status = await lookup.async_status()
                 data = ServerData(**{
@@ -123,8 +134,8 @@ class Server:
         return
 
 
-async def setup(client):
-    client.add_icog(Server(client))
+def setup(client):
+    client.add_interaction_cog(Server(client))
 
 
 a = {

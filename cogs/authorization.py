@@ -243,5 +243,5 @@ class Authorization:
         return
 
 
-async def setup(client):
-    client.add_icog(Authorization(client))
+def setup(client):
+    client.add_interaction_cog(Authorization(client))

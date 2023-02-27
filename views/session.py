@@ -62,7 +62,7 @@ async def callback():
         return make_response("wrong approach", 403)
 
     try:
-        access_token = await client. generate_access_token(
+        access_token = await client.generate_access_token(
             code=code,
             redirect_uri="http://" + request.host + "/session/callback"
         )

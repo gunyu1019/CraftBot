@@ -37,8 +37,8 @@ if __name__ == "__main__":
 
     app = Flask(__name__)
 
-    asyncio.run(bot.load_extensions('cogs', directory))
-    asyncio.run(bot.load_extensions('tasks', directory))
+    bot.load_extensions('cogs', directory)
+    bot.load_extensions('tasks', directory)
     partial_run = partial(app.run, host="0.0.0.0", port=3201, debug=True, use_reloader=False)
 
     views = [

@@ -3,13 +3,17 @@ import asyncio
 import logging
 
 from discord.ext import tasks
+from discord.ext import interaction
 
 log = logging.getLogger(__name__)
 
 
 class PresenceTask:
-    def __init__(self, bot):
+    def __init__(self, bot: interaction.Client):
         self.client = bot
+        self.client.add_setup_hook(self.setup_hook)
+
+    async def setup_hook(self):
         self.presence.start()
 
     @tasks.loop(seconds=3)
@@ -23,7 +27,7 @@ class PresenceTask:
         else:
             await self.client.change_presence(
                 status=discord.Status.online,
-                activity=discord.Game(f"활동중인 서버갯수: {len(self.client.guilds)}, 샤드갯수: {len(self.client.shard_count)}")
+                activity=discord.Game(f"활동중인 서버갯수: {len(self.client.guilds)}, 샤드갯수: {self.client.shard_count}")
             )
         await asyncio.sleep(3.0)
 
@@ -44,5 +48,5 @@ class PresenceTask:
         await self.client.wait_until_ready()
 
 
-async def setup(client):
-    client.add_icog(PresenceTask(client))
+def setup(client):
+    client.add_interaction_cog(PresenceTask(client))

@@ -113,5 +113,5 @@ class Profile:
         return
 
 
-async def setup(client):
-    client.add_icog(Profile(client))
+def setup(client):
+    client.add_interaction_cog(Profile(client))
